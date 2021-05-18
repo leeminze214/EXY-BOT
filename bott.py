@@ -32,5 +32,45 @@ async def help(ctx):
                 )
     await ctx.send(embed=embed)
 
+@bot.command()
+async def event(ctx):
+    embed = discord.Embed(
+            title="Events",
+            url="https://exysociety.org/events/",
+            color=discord.Color.blue())
+    embed.add_field(
+            name="**INNOVATION CHALLENGE 2021**",
+            value='A hackathon where participants worked to solve a case study by working building a website with a variety of marketing strategies to promoting a small business during the pandemic.',
+            inline=False)
+    embed.add_field(
+            name="**\nNETWORK YOUR NONPROFIT**",
+            value="A webinar that provided a great opportunity for organizations of all sizes across Canada, USA, and the UK to connect and learn from each other.",
+            inline=False)
+    embed.add_field(
+            name="**\nBANKING ON YOUR FUTURE!**",
+            value="An online webinar that helped high school and post secondary students enhance their knowledge in financial literacy (stocks, credits, cryptocurrency, and more)!",
+            inline=False)
+    embed.add_field(
+            name="**\nACE THAT INTERVIEW**",
+            value="An online interview skills workshop filled with informative tips on how to prepare for an interview, how to reduce stress before an interview, what to keep in mind concerning differences between online and in-person interviews, how to tackle difficult interview questions, and how to avoid common interview mistakes.",
+            inline=False)
+    embed.add_field(
+            name="**\nPROFESSIONAL DEVELOPMENT 101**",
+            value="An online webinar consisting of fun and interactive activities to help high school students build a strong resume, improve their professionalism, and start networking in the digital age.",
+            inline=False)
+    embed.add_field(
+            name="**\nWORK WITH ME WEDNESDAYS**",
+            value="Every Wednesday throughout October, Expand Youth Society Instagram followers learned about the 21st century skills used by professionals in the arts, sciences, business, and law through Instagram takeovers.",
+            inline=False)
+    embed.add_field (
+            name="**\nA NEW APPROACH TO THE NEW NORMAL**",
+            value="An online webinar assisting youth in grades 6 to 12 with maintaining their motivation through the upcoming school year and adapting successfully to their new learning environments.",
+            inline=False)
+    embed.add_field(
+            name="**\nLAUNCHPAD CAMP**",
+            value="A week-long camp featuring a new event every day. Each event focused on enhancing a different 21st century skill.",
+            inline=False)
+
+    await ctx.send(embed=embed)
 
 bot.run(token, bot = True)
