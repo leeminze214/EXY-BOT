@@ -73,4 +73,18 @@ async def event(ctx):
 
     await ctx.send(embed=embed)
 
+@bot.command()
+async def link(ctx):
+    embed = discord.Embed()
+    embed.title = 'Helpful Links'
+    embed.color = discord.Color.blue()
+    embed.add_field(
+            name='Check out our website!',
+            value='https://exysociety.org/',
+            inline=False
+            )
+    await ctx.send(embed=embed)
+
+
+
 bot.run(token, bot = True)
