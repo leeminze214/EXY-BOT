@@ -3,7 +3,7 @@ from discord.ext import commands, tasks
  
 
 token = open('tok.txt').read()
-bot = commands.Bot(command_prefix='.', help_command =None)
+bot = commands.Bot(command_prefix='.', help_command =None, case_insensitive=True)
       
    
 @bot.event
@@ -34,7 +34,7 @@ async def help(ctx):
 
 
 
-@bot.command()
+@bot.command(aliases = ['events'])
 async def event(ctx):
     embed = discord.Embed(
             title="Events",
@@ -77,7 +77,7 @@ async def event(ctx):
 
 
 
-@bot.command()
+@bot.command(aliases = ['contacts'])
 async def contact(ctx):
     embed = discord.Embed()
     embed.title = 'EXY Contacts'
