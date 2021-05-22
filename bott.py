@@ -26,8 +26,8 @@ async def help(ctx):
                 inline= False
                 )
     embed.add_field(
-                name="Access helpful links",
-                value="`.link`",
+                name="Access contacts info",
+                value="`.contact`",
                 inline = False
                 )
     await ctx.send(embed=embed)
