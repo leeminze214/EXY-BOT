@@ -32,6 +32,8 @@ async def help(ctx):
                 )
     await ctx.send(embed=embed)
 
+
+
 @bot.command()
 async def event(ctx):
     embed = discord.Embed(
@@ -73,14 +75,36 @@ async def event(ctx):
 
     await ctx.send(embed=embed)
 
+
+
 @bot.command()
-async def link(ctx):
+async def contact(ctx):
     embed = discord.Embed()
-    embed.title = 'Helpful Links'
+    embed.title = 'EXY Contacts'
     embed.color = discord.Color.blue()
     embed.add_field(
-            name='Check out our website!',
+            name='🌐 Website',
             value='https://exysociety.org/',
+            inline=False
+            )
+    embed.add_field(
+            name='📷 Instagram',
+            value='https://www.instagram.com/exysociety/',
+            inline=False
+            )
+    embed.add_field(
+            name='🇱 Linkedin',
+            value='https://www.linkedin.com/company/exysociety/mycompany/',
+            inline=False
+            )
+    embed.add_field(
+            name='🇫 Facebook',
+            value='https://www.facebook.com/expandyouthsociety/',
+            inline=False
+            )
+    embed.add_field(
+            name='📧 Email',
+            value='expandyouthsociety@gmail.com',
             inline=False
             )
     await ctx.send(embed=embed)
