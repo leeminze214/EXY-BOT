@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands, tasks
+from typing import Optional
  
 
 token = open('tok.txt').read()
@@ -28,6 +29,11 @@ async def help(ctx):
     embed.add_field(
                 name="Access contacts info",
                 value="`.contact`",
+                inline = False
+                )
+    embed.add_field(
+                name="View your passport",
+                value="`.passport`",
                 inline = False
                 )
     await ctx.send(embed=embed)
@@ -109,6 +115,27 @@ async def contact(ctx):
             )
     await ctx.send(embed=embed)
 
+
+
+
+@bot.command(aliases = ['profile', 'userinfo'])
+async def passport(ctx):
+    target = ctx.author
+    embed = discord.Embed()
+    embed.title = 'Your Passport'
+    embed.color = target.colour
+        
+    fields = [("Name", str(target), False),
+              ("Top role", target.top_role.mention, True),
+              ("Joined at", target.joined_at.strftime("%m/%d/%y"), True),
+              ("Activity", f"{str(target.activity.type).split('.')[-1].title() if target.activity else 'N/A'} {target.activity.name  if target.activity else ''}", True)]
+        
+    for name, value, inline in fields:
+        embed.add_field(name=name, value=value, inline=inline)
+
+    embed.set_thumbnail(url=target.avatar_url)
+
+    await ctx.send(embed=embed)
 
 
 bot.run(token, bot = True)
