@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands, tasks
 from typing import Optional
+
+intents = discord.Intents.default()
+intents.presences = True
  
 
 token = open('tok.txt').read()
@@ -128,6 +131,8 @@ async def passport(ctx):
     fields = [("Name", str(target), False),
               ("Top role", target.top_role.mention, True),
               ("Joined at", target.joined_at.strftime("%m/%d/%y"), True),
+              ("\u200b", '** **', False),
+              ("Status", str(target.status).title(), True),
               ("Activity", f"{str(target.activity.type).split('.')[-1].title() if target.activity else 'N/A'} {target.activity.name  if target.activity else ''}", True)]
         
     for name, value, inline in fields:
