@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands, tasks
 from typing import Optional
-
+import time
+import discord.utils
 intents = discord.Intents.all()
 #intents.presences = True
  
@@ -13,6 +14,7 @@ bot = commands.Bot(command_prefix='.', help_command =None, case_insensitive=True
 @bot.event
 async def on_ready():
     print('logged in as {0.user}'.format(bot))
+
 
 @bot.command()
 async def ping(ctx):
@@ -40,7 +42,6 @@ async def help(ctx):
                 inline = False
                 )
     await ctx.send(embed=embed)
-
 
 
 @bot.command(aliases = ['events'])
@@ -85,7 +86,6 @@ async def event(ctx):
     await ctx.send(embed=embed)
 
 
-
 @bot.command(aliases = ['contacts'])
 async def contact(ctx):
     embed = discord.Embed()
@@ -119,8 +119,6 @@ async def contact(ctx):
     await ctx.send(embed=embed)
 
 
-
-
 @bot.command(aliases = ['profile', 'userinfo'])
 async def passport(ctx):
     target = ctx.author
@@ -142,6 +140,23 @@ async def passport(ctx):
     embed.set_thumbnail(url=target.avatar_url)
 
     await ctx.send(embed=embed)
+
+
+reaction_role = None
+@bot.command(aliases = ['rr'])
+async def custom_reaction_role(ctx,title,message,role):
+        reaction_role = role
+        channel = bot.get_channel('840318892038684683')
+        #specific channel ID
+        embed = discord.Embed()
+        embed.title = title
+        embed.add_field(name='\u200b', value=message)
+        embed.add_field(name='\u200b', value=reaction_role)
+        msg = await ctx.send(embed=embed)
+        await msg.add_reaction("🏃")
+
+        
+        
 
 
 bot.run(token, bot = True)
