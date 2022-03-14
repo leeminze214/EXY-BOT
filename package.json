@@ -18,5 +18,8 @@
   "homepage": "https://github.com/leeminze214/EXY-BOT#readme",
   "dependencies": {
     "discord.js": "^13.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.11.0"
   }
 }
