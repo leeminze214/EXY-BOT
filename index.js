@@ -1,13 +1,11 @@
 // The libraries we need for this
-const Discord = require('discord.js');
-const fs = require('fs');
+const { Client, Intents } = require('discord.js');
+const { token } = require('./config.json');
 
-const token = fs.readFileSync('./tok.txt','utf8').trim()
-
-const client = new Discord.Client({ intents: []});
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.login(token).then(() => {
-    console.log("Successfully logged in!");
+	console.log('Successfully logged in!');
 }).catch((error) => {
-    console.log(`Invalid TOKEN!\n${error}`);
+	console.log(`Invalid TOKEN!\n${error}`);
 });
