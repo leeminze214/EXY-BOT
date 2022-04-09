@@ -1,11 +1,35 @@
-// The libraries we need for this
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
 const fs = require('node:fs');
 const { token } = require('./config.json');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS], partials:['MESSAGE', 'CHANNEL', 'REACTION'] });
+const prefix = '.';
 
 client.commands = new Collection();
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.name, command);
+}
+
+client.login(token).then(() => {
+	console.log('Successfully logged in!');
+}).catch((error) => {
+	console.log(`Invalid TOKEN!\n${error}`);
+});
+
+client.on('messageCreate', message => {
+	const adminRole = '852267179164041236';
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase();
+    if (command === 'reactionrole' && message.member.roles.cache.has(adminRole)) {
+        client.commands.get('reactionrole').execute(message, args, MessageEmbed, client);
+    } 
+	// continue with other commands below
+  
+});
+
+/*
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
@@ -30,9 +54,4 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
-
-client.login(token).then(() => {
-	console.log('Successfully logged in!');
-}).catch((error) => {
-	console.log(`Invalid TOKEN!\n${error}`);
-});
+*/
