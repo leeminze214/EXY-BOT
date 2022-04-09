@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+/* const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -7,4 +7,4 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.reply(`Create Date: ${interaction.guild.createdAt}\nServer name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
 	},
-};
+};*/
