@@ -13,18 +13,18 @@ for (const file of commandFiles) {
 
 client.login(token).then(() => {
 	console.log('Successfully logged in!');
-}).catch((error) => {
-	console.log(`Invalid TOKEN!\n${error}`);
 });
+
 
 client.on('messageCreate', message => {
 	const adminRole = '852267179164041236';
     if (!message.content.startsWith(prefix) || message.author.bot) return;
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase();
+    const args = message.content.slice(prefix.length).split('---');
+    const command = args[0].toLowerCase();
     if (command === 'reactionrole' && message.member.roles.cache.has(adminRole)) {
         client.commands.get('reactionrole').execute(message, args, MessageEmbed, client);
-    } 
+    
+	} 
 	// continue with other commands below
   
 });

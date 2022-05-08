@@ -2,18 +2,23 @@ module.exports = {
     name: 'reactionrole',
     description: 'creates reaction role message!',
     async execute(message, args, MessageEmbed, client) {
+        // [command,title,description,rolename,reactionemoji]
         const channel = '840318892038684683';
-        const roleName = 'le';
+        // const roleName = 'le';
+        const title = args[1];
+        const description = args[2];
+        const roleName = args[3];
         const reactionRole = message.guild.roles.cache.find(role => role.name === roleName);
-        
- 
-        const reactionEmoji = '✔️';
+        // const reactionEmoji = '✔️';
+        const reactionEmoji = args[4];
  
         const embed = new MessageEmbed()
             .setColor('#e42643')
-            .setTitle('Choose a team to play on!')
-            .setDescription(`React to get ${roleName} role \n\n`
-                + `${reactionEmoji} for the role\n`);
+            .setTitle(title)
+            .setDescription(description);
+            /* .setDescription(`React to get ${roleName} role \n\n`
+                + `${reactionEmoji} for the role\n`); 
+                */
  
         const messageEmbed = await message.channel.send({ embeds: [embed] });
         messageEmbed.react(reactionEmoji);
