@@ -25,6 +25,10 @@ client.on('messageCreate', message => {
         client.commands.get('reactionrole').execute(message, args, MessageEmbed, client);
     
 	} 
+	if (command === 'contact') {
+        client.commands.get('contacts').execute(message, MessageEmbed);
+    
+	} 
 	// continue with other commands below
   
 });
