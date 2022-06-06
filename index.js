@@ -19,10 +19,18 @@ client.login(token).then(() => {
 client.on('messageCreate', message => {
 	const adminRole = '852267179164041236';
     if (!message.content.startsWith(prefix) || message.author.bot) return;
-    const args = message.content.slice(prefix.length).split('---');
-    const command = args[0].toLowerCase();
+    const inputs = message.content.split(' ');
+    const command = inputs[0].substring(prefix.length, inputs[0].length).toLowerCase();
+	console.log(command);
+	let args = null;
+	if (inputs.length >= 2) {
+		args = inputs[1];
+
+	}
     if (command === 'reactionrole' && message.member.roles.cache.has(adminRole)) {
-        client.commands.get('reactionrole').execute(message, args, MessageEmbed, client);
+        console.log('calling');
+		console.log(args);
+		client.commands.get('reactionrole').execute(message, args, MessageEmbed, client);
     
 	} 
 	if (command === 'contact') {
